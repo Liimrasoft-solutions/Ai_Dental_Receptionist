@@ -18,8 +18,10 @@ export default function Sidebar({ agents, user }: { agents: { key: string; label
   return (
     <nav className="border-b border-line bg-[#1E293B] text-white md:sticky md:top-0 md:h-screen md:w-56 md:shrink-0 md:border-b-0 md:border-r">
       <div className="flex items-center justify-between px-5 py-4 md:block">
-        <Link href={`/${keep}`} className="block text-lg font-bold tracking-tight">Agent Hub</Link>
-        <p className="hidden text-xs text-white/60 md:mt-0.5 md:block">Shifa Dental</p>
+        <Link href={`/${keep}`} className="block text-lg font-bold tracking-tight text-white hover:text-teal">
+          Limra Dental AI
+        </Link>
+        <p className="hidden text-xs text-white/60 md:mt-0.5 md:block">Shifa Dental · Plano & Garland</p>
       </div>
 
       <div className="px-3 pb-3 md:pb-0">

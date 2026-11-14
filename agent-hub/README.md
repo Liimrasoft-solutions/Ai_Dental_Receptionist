@@ -1,6 +1,6 @@
-# Agent Hub
+# Limra Dental AI
 
-One dashboard for every AI agent at the practice: the Retell receptionist now, then insurance verification, marketing and health records.
+One unified intelligence platform for every AI agent at the dental practice: the bilingual Retell receptionist now, followed by automated insurance verification, patient marketing, and health records compliance.
 Built to the November 2026 implementation plan (Next.js + FastAPI + Postgres, hosted on AWS).
 
 ```

@@ -8,7 +8,7 @@ import "./globals.css";
 
 const sans = Public_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 
-export const metadata: Metadata = { title: "Agent Hub", description: "Every AI agent at the practice, on one screen" };
+export const metadata: Metadata = { title: "Limra Dental AI", description: "Every AI agent at the practice, on one screen" };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const meta = await apiGet<Meta>("/v1/meta").catch(() => null);
