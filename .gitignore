@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# Virtual Environments & Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+*.env.local
+venv/
+.venv/
+env/
+
+# Databases & local sqlite
+*.db
+*.sqlite3
+hub.db
+
+# System & IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Exclude standalone installers
+*.exe

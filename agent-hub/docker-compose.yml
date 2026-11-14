@@ -1,0 +1,41 @@
+# `docker compose up -d` starts Postgres and Redis for local work.
+# `docker compose --profile full up -d --build` also runs the API and the dashboard in containers.
+services:
+  db:
+    image: postgres:16.4
+    environment:
+      POSTGRES_USER: hub
+      POSTGRES_PASSWORD: hub
+      POSTGRES_DB: hub
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hub"]
+      interval: 5s
+      retries: 10
+
+  redis:
+    image: redis:7.4
+    ports: ["6379:6379"]
+
+  api:
+    profiles: [full]
+    build: ./api
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://hub:hub@db:5432/hub
+    ports: ["8000:8000"]
+    depends_on:
+      db: { condition: service_healthy }
+
+  web:
+    profiles: [full]
+    build: ./web
+    environment:
+      API_URL: http://api:8000
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    ports: ["3001:3000"]
+    depends_on: [api]
+
+volumes:
+  pgdata:

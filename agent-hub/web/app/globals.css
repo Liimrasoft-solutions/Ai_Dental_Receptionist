@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { color-scheme: light; }
+body { @apply bg-paper text-ink antialiased; font-feature-settings: "tnum" 1; }
+:focus-visible { outline: 2px solid #1D6A73; outline-offset: 2px; }
+
+@layer components {
+  .panel { @apply bg-surface border border-line rounded-panel; }
+  .panel-title { @apply text-[15px] font-semibold text-ink; }
+  .btn { @apply inline-flex items-center gap-1.5 rounded border border-line bg-surface px-2.5 py-1 text-sm font-medium text-ink hover:border-teal hover:text-teal disabled:opacity-50; }
+  .btn-primary { @apply border-teal bg-teal text-white hover:bg-teal-dark hover:text-white; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
