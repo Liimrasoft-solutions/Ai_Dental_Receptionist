@@ -96,8 +96,17 @@ def overview(
         "tiles": tiles,
         "calls": summaries.get("receptionist", {}).get("series"),
         "side_breakdowns": [
-            {**summaries["verification"]["breakdowns"][1], "agent": "verification", "title": "Insurance checks by method"} if by_agent.get("verification") else None,
-            {**summaries["marketing"]["breakdowns"][0], "agent": "marketing", "title": "Marketing leads by source"} if by_agent.get("marketing") else None,
+            {
+                "title": "Insurance checks",
+                "agent": "verification",
+                "items": [
+                    {"label": "Verified", "value": len([e for e in by_agent.get("verification", []) if e.status == "done"]), "display": str(len([e for e in by_agent.get("verification", []) if e.status == "done"]))},
+                    {"label": "Needs staff", "value": len([e for e in by_agent.get("verification", []) if e.status == "needs_staff"]), "display": str(len([e for e in by_agent.get("verification", []) if e.status == "needs_staff"]))},
+                    {"label": "Failed", "value": len([e for e in by_agent.get("verification", []) if e.status == "failed"]), "display": str(len([e for e in by_agent.get("verification", []) if e.status == "failed"]))},
+                    {"label": "Waiting", "value": len([e for e in by_agent.get("verification", []) if e.status == "waiting"]), "display": str(len([e for e in by_agent.get("verification", []) if e.status == "waiting"]))},
+                ],
+            } if by_agent.get("verification") else None,
+            {**summaries["marketing"]["breakdowns"][0], "agent": "marketing", "title": "Leads by source"} if by_agent.get("marketing") else None,
         ],
         "needs_person": [
             {"id": e.id, "agent": e.agent, "agent_label": agent_def(e.agent).label, "when": e.occurred_at.isoformat(),
